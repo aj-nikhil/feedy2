@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from django.utils.translation import ugettext_lazy as _
 
 from django.db import models
 from businesses.models import Business
@@ -8,9 +9,13 @@ from customers.models import Customer
 
 
 class Survey(models.Model):
+    title = models.CharField(_("Title"), max_length=150)
     business = models.ForeignKey(Business)
     questions = models.ManyToManyField(Question)
     date_added = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.title
 
 
 class SurveyRecord(models.Model):

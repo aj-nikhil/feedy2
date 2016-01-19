@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="{{ LANGUAGE_CODE|default:" en-gb" }}" class="no-js">
+<!--<![endif]-->
+{% block header %}
+<head>
+
+</head>
+{% endblock header %}
+
+{% block body %}  
+<body>
+  {% block navbar %}
+  {% endblock navbar %}
+
+  {% block extra %}
+  {% endblock extra %}
+
+  {% block content %}
+  {% endblock content %}
+
+  {% block footer %}
+  {% endblock footer %}
+
+  {% block javascript %}    
+  {% endblock javascript %}
+
+  {% block custom_js %}
+  {% endblock custom_js %}  
+</body>
+{% endblock %} 
+</html>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block body %}
+<form role="form" action="/survey/{{ survey.id }}">
+{% for ques in survey.questions.all %}
+	<div class="form-group">
+	<label for="{{ ques.id }}">{{ ques.title }}</label>
+	{% for option in ques.options.all %}
+	<input class="form-control" type="radio" name="{{ ques.id }}">
+		{{ option.text }}
+	{% endfor %}
+	</div>
+{% endfor %}
+<button type="submit">Submit</button>
+</form>
+{% endblock %}

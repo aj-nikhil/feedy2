@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'formtools',
     'surveys',
     'customers',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (

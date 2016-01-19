@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block body %}
+{% for survey in object_list %}
+<div>
+	<a href="/survey/{{ survey.id }}">{{ survey.title }}</a>
+</div>	
+{% endfor %}	
+{% endblock %}

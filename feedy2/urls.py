@@ -17,8 +17,19 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from surveys.forms import ContactForm1, ContactForm2
 from surveys.views import ContactWizard
+from surveys import urls as survey_urls
+from rest_framework.routers import DefaultRouter
+from rest_api.views import *
+
+router = DefaultRouter()
+router.register(r'surveys', SurveyViewSet)
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^contact/$', ContactWizard.as_view([ContactForm1, ContactForm2])),
+    url(r'', include(survey_urls)),
+    url(r'^api-auth/',
+        include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/', include(router.urls)),
 ]
