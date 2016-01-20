@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div data-role="page" id="pageone" data-theme="c">
+<div data-role="page" id="pageone">
   <div data-role="header">
   	<h1>Welcome To Feedy2.0</h1>
   </div>
 
   <div data-role="main" class="ui-content">
+  <p>{{questions}}</p>
+
 	<p>Know your Customers, Grow Your Business.</p>
+	<div id="next">Next<a href="#bar">bar</a></div>
   </div>
 
   <div data-role="footer">

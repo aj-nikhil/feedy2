@@ -3,6 +3,7 @@ from .forms import *
 from .models import *
 from django.template.context import RequestContext
 from django.http import JsonResponse
+import itertools
 
 # Create your views here.
 from django.shortcuts import render_to_response

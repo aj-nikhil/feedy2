@@ -1,18 +1,36 @@
 {% extends "base.html" %}
 
-{% block body %}
+{% block content %}
 <form role="form" action="/survey/{{ survey.id }}" method="POST">
-{% csrf_token %}
-{% for ques in survey.questions.all %}
-	<div class="form-group">
-	<label for="{{ ques.title }}">{{ ques.title }}</label>
-	<select name="{{ ques.title }}">
-	{% for option in ques.options.all %}
-		<option value="{{ option.text }}">{{ option.text }}</option>
+	{% csrf_token %}
+	{% for ques in survey.questions.all %}
+	<div data-role="page" id="ques_{{ forloop.counter }}">
+		<div data-role="header">
+			<h1>Welcome To Feedy2.0</h1>
+		</div>
+
+		<div data-role="main" class="ui-content">
+			<div class="form-group">
+				<label for="{{ ques.title }}">{{ ques.title }}</label>
+				<select name="{{ ques.title }}">
+					{% for option in ques.options.all %}
+						<option value="{{ option.text }}">{{ option.text }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div id="next">
+				{% if forloop.counter == survey.questions.count %}
+					<button type="submit">Submit</button>
+				{% else %}
+					<a href="#ques_{{ forloop.counter|add:1}}">Next</a>
+				{% endif %}
+			</div>
+		</div>
+		<div data-role="footer">
+			<h1>Footer</h1>
+		</div>
+	</div> 	
 	{% endfor %}
-	</select>
-	</div>
-{% endfor %}
-<button type="submit">Submit</button>
 </form>
+
 {% endblock %}
