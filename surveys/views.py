@@ -21,25 +21,25 @@ class SurveyView(generic.View):
     def get(self, request, *args, **kwargs):
         survey = Survey.objects.get(pk=self.kwargs["survey_id"])
         kwargs["survey"] = survey
-        self.survey = survey
         return render_to_response("survey.html", kwargs,
                                   context_instance=RequestContext(request))
 
     def post(self, request, *args, **kwargs):
         resp_dict = {}
         try:
+            survey_id = request.POST["survey_id"]
             bill_number = request.POST["bill_number"]
-            email = request.POST["email"]
+            email_id = request.POST["email_id"]
             mobile = request.POST["mobile"]
             meta_data = [
-                "bill_number", "mobile", "email", "csrfmiddlewaretoken"]
+                "bill_number", "mobile", "email_id", "csrfmiddlewaretoken"]
             post_dict = dict(request.POST.iterlists())
             for k in meta_data:
                 post_dict.pop(k, None)
             survey_rec_obj = SurveyRecord(
-                bill_number=bill_number, email=email, mobile=mobile)
-            survey_rec_obj.answers_json = post_dict
-            survey_rec_obj.survey = self.survey
+                bill_number=bill_number, email_id=email_id, mobile=mobile)
+            survey_rec_obj.answers = post_dict
+            survey_rec_obj.survey = Survey.objects.get(pk=survey_id)
             survey_rec_obj.save()
             resp_dict["status"] = 1
         except Exception as e:
