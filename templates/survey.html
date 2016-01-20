@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
 {% block body %}
-<form role="form" action="/survey/{{ survey.id }}">
+<form role="form" action="/survey/{{ survey.id }}" method="POST">
+{% csrf_token %}
 {% for ques in survey.questions.all %}
 	<div class="form-group">
-	<label for="{{ ques.id }}">{{ ques.title }}</label>
+	<label for="{{ ques.title }}">{{ ques.title }}</label>
+	<select name="{{ ques.title }}">
 	{% for option in ques.options.all %}
-	<input class="form-control" type="radio" name="{{ ques.id }}">
-		{{ option.text }}
+		<option value="{{ option.text }}">{{ option.text }}</option>
 	{% endfor %}
+	</select>
 	</div>
 {% endfor %}
 <button type="submit">Submit</button>
