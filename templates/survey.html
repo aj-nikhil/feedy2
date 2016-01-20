@@ -2,6 +2,10 @@
 
 {% block content %}
 <form role="form" action="/survey/{{ survey.id }}" method="POST">
+    <input type="hidden" name="survey_id" value="{{ survey.id }}"> 
+	<input type="text" name="bill_number"> Bill Number
+	<input type="email" name="email"> Email
+	<input type="number" name="mobile"> Mobile
 	{% csrf_token %}
 	{% for ques in survey.questions.all %}
 	<div data-role="page" id="ques_{{ forloop.counter }}" data-theme="c">

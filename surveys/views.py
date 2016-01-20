@@ -1,5 +1,4 @@
 from django.views import generic
-from .forms import *
 from .models import *
 from django.template.context import RequestContext
 from django.http import JsonResponse
@@ -20,13 +19,33 @@ class ContactWizard(SessionWizardView):
 class SurveyView(generic.View):
 
     def get(self, request, *args, **kwargs):
-        kwargs["survey"] = Survey.objects.get(pk=self.kwargs["survey_id"])
+        survey = Survey.objects.get(pk=self.kwargs["survey_id"])
+        kwargs["survey"] = survey
+        self.survey = survey
         return render_to_response("survey.html", kwargs,
                                   context_instance=RequestContext(request))
 
     def post(self, request, *args, **kwargs):
-        print request.POST
-        return JsonResponse({"status": 1})
+        resp_dict = {}
+        try:
+            bill_number = request.POST["bill_number"]
+            email = request.POST["email"]
+            mobile = request.POST["mobile"]
+            meta_data = [
+                "bill_number", "mobile", "email", "csrfmiddlewaretoken"]
+            post_dict = dict(request.POST.iterlists())
+            for k in meta_data:
+                post_dict.pop(k, None)
+            survey_rec_obj = SurveyRecord(
+                bill_number=bill_number, email=email, mobile=mobile)
+            survey_rec_obj.answers_json = post_dict
+            survey_rec_obj.survey = self.survey
+            survey_rec_obj.save()
+            resp_dict["status"] = 1
+        except Exception as e:
+            resp_dict["status"] = 0
+            resp_dict["exception"] = e
+        return JsonResponse(resp_dict)
 
 
 class SurveyAll(generic.ListView):

@@ -1,5 +1,5 @@
 from django import forms
-from surveys.models import Survey
+from surveys.models import Survey, SurveyRecord
 from django.forms import ModelForm
 
 
@@ -16,3 +16,9 @@ class SurveyForm(ModelForm):
     class Meta:
         model = Survey
         fields = ['business', 'questions']
+
+
+class SurveyRecordForm(forms.Form):
+    class Meta:
+        model = SurveyRecord
+        fields = ["bill_number", "email", "mobile"]
