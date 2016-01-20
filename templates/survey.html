@@ -1,19 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form role="form" action="/survey/{{ survey.id }}" method="POST">
-    <input type="hidden" name="survey_id" value="{{ survey.id }}"> 
-	<input type="text" name="bill_number"> Bill Number
-	<input type="email" name="email"> Email
-	<input type="number" name="mobile"> Mobile
-	{% csrf_token %}
-	{% for ques in survey.questions.all %}
-	<div data-role="page" id="ques_{{ forloop.counter }}" data-theme="c">
-		<div data-role="header">
-			<h1>Welcome To Feedy2.0</h1>
-		</div>
-
-		<div data-role="main" class="ui-content">
+<div data-role="page" id="ques_{{ forloop.counter }}" data-theme="c">
+	<div data-role="header">
+		<h1>Welcome To Feedy2.0</h1>
+	</div>
+	<div data-role="main" class="ui-content">
+	<form role="form" action="/survey/{{ survey.id }}" method="POST">
+    	<input type="hidden" name="survey_id" value="{{ survey.id }}"> 
+		<input type="text" name="bill_number"> Bill Number
+		<input type="email" name="email_id" validated> Email
+		<input type="number" name="mobile"> Mobile
+		{% csrf_token %}
+		{% for ques in survey.questions.all %}
 			<div class="form-group">
 				<label for="{{ ques.title }}">{{ ques.title }}</label>
 				<select name="{{ ques.title }}">
@@ -29,12 +28,12 @@
 					<a href="#ques_{{ forloop.counter|add:1}}">Next</a>
 				{% endif %}
 			</div>
-		</div>
-		<div data-role="footer">
-			<h1>Footer</h1>
-		</div>
-	</div> 	
-	{% endfor %}
+	    {% endfor %}
+	</div>
+	<div data-role="footer">
+		<h1>Footer</h1>
+	</div>
 </form>
+</div> 	
 
 {% endblock %}
