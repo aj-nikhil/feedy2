@@ -5,6 +5,7 @@ from django.db import models
 from businesses.models import Business
 from questions.models import Question
 from customers.models import Customer
+from jsonfield import JSONField
 # Create your models here.
 
 
@@ -21,3 +22,4 @@ class Survey(models.Model):
 class SurveyRecord(models.Model):
     survey = models.ForeignKey(Survey)
     customer = models.ForeignKey(Customer)
+    answers = JSONField(blank=True, null=True)

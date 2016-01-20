@@ -1,6 +1,8 @@
 from django.views import generic
 from .forms import *
 from .models import *
+from django.template.context import RequestContext
+from django.http import JsonResponse
 
 # Create your views here.
 from django.shortcuts import render_to_response
@@ -18,10 +20,12 @@ class SurveyView(generic.View):
 
     def get(self, request, *args, **kwargs):
         kwargs["survey"] = Survey.objects.get(pk=self.kwargs["survey_id"])
-        return render_to_response("survey.html", kwargs)
+        return render_to_response("survey.html", kwargs,
+                                  context_instance=RequestContext(request))
 
     def post(self, request, *args, **kwargs):
-        print request.POST["1"]
+        print request.POST
+        return JsonResponse({"status": 1})
 
 
 class SurveyAll(generic.ListView):
