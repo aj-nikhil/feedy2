@@ -20,6 +20,9 @@ from surveys.views import ContactWizard
 from surveys import urls as survey_urls
 from rest_framework.routers import DefaultRouter
 from rest_api.views import *
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import JqmTest
 
 router = DefaultRouter()
 router.register(r'surveys', SurveyViewSet)
@@ -32,4 +35,5 @@ urlpatterns = [
     url(r'^api-auth/',
         include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/', include(router.urls)),
-]
+    url(r'^jqmtest/', JqmTest.as_view()),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

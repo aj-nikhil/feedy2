@@ -1,13 +1,21 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="{{ LANGUAGE_CODE|default:"en-gb" }}" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="{{ LANGUAGE_CODE|default:" en-gb" }}" class="no-js">
-<!--<![endif]-->
+<html> 
 {% block header %}
 <head>
+  <meta charset="utf-8">
+  
+<!-- Include meta tag to ensure proper rendering and touch zooming -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Include jQuery Mobile stylesheets -->
+<link rel="stylesheet" href="static/jqm/jqm-1.4.5.min.css">
+
+<!-- Include the jQuery library -->
+<script src="static/jquery/jquery-1.11.3.min.js"></script>
+
+<!-- Include the jQuery Mobile library -->
+<script src="static/jqm/jqm-1.4.5.min.js"></script>
 
 </head>
 {% endblock header %}
