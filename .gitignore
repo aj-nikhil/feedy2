@@ -1,1 +1,4 @@
+#Compiled files
 *.pyc
+#DS FILES
+**/.DS_Store
