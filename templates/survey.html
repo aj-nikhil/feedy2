@@ -4,7 +4,7 @@
 <form role="form" action="/survey/{{ survey.id }}" method="POST">
 	{% csrf_token %}
 	{% for ques in survey.questions.all %}
-	<div data-role="page" id="ques_{{ forloop.counter }}" data-theme="b">
+	<div data-role="page" id="ques_{{ forloop.counter }}" data-theme="c">
 		<div data-role="header">
 			<h1>Welcome To Feedy2.0</h1>
 		</div>
