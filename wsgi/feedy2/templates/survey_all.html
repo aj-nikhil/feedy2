@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for survey in object_list %}
+<div>
+	<a data-ajax="false" href="/survey/{{ survey.id }}">{{ survey.title }}</a>
+</div>	
+{% endfor %}	
+{% endblock %}

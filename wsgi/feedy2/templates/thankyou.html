@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<div data-role="page" id="thankyou" data-theme="c" data-position="fixed">
+	<div data-role="header">
+	</div>
+	<div data-role="content">
+	Thank You so much for your valuable feedback. We will send coupons to your email-id.
+	<p>Give another feedback, <a href="/survey/{{ survey_id}}">here</a></p>
+	</div>
+	<div data-role="footer">
+	</div>
+</div>
+{% endblock %}
