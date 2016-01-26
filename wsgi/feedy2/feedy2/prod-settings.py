@@ -102,11 +102,11 @@ DATABASES = {
         'NAME': 'feedy',
         'USER': 'admin8wa6bxz',
         'PASSWORD': 'TjQqkTGMhSng',
-        'HOST': 'postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT',
+        'HOST': postgresql://os.environ['$OPENSHIFT_POSTGRESQL_DB_HOST']:
+                os.environ['$OPENSHIFT_POSTGRESQL_DB_PORT'],
         'PORT': '5432',
     }
 }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
