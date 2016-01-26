@@ -33,10 +33,11 @@ DEBUG = True
 
 from socket import gethostname
 ALLOWED_HOSTS = [
-    gethostname(), # For internal OpenShift load balancer security purposes.
-    os.environ.get('OPENSHIFT_APP_DNS'), # Dynamically map to the OpenShift gear name.
-    #'example.com', # First DNS alias (set up in the app)
-    #'www.example.com', # Second DNS alias (set up in the app)
+    gethostname(),  # For internal OpenShift load balancer security purposes.
+    # Dynamically map to the OpenShift gear name.
+    os.environ.get('OPENSHIFT_APP_DNS'),
+    # 'example.com', # First DNS alias (set up in the app)
+    # 'www.example.com', # Second DNS alias (set up in the app)
 ]
 
 
@@ -52,7 +53,7 @@ INSTALLED_APPS = (
     'businesses',
     'customers',
     'questions',
-    'surveys','
+    'surveys',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'feedy2.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
-#         # GETTING-STARTED: change 'db.sqlite3' to your sqlite3 database:
+# GETTING-STARTED: change 'db.sqlite3' to your sqlite3 database:
 #         'NAME': os.path.join(DATA_DIR, 'db.sqlite3'),
 #     }
 # }
@@ -109,7 +110,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 
 # Internationalization
