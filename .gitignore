@@ -7,3 +7,5 @@
 .pydevproject
 #DS FILES
 **/.DS_Store
+#Compiled files
+*.pyc
