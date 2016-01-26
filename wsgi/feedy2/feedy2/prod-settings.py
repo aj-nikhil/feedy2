@@ -106,8 +106,8 @@ DATABASES = {
         'NAME': 'feedy',
         'USER': 'admin8wa6bxz',
         'PASSWORD': 'TjQqkTGMhSng',
-        'HOST': os.environ['$OPENSHIFT_POSTGRESQL_DB_HOST'],
-        'PORT': os.environ['$OPENSHIFT_POSTGRESQL_DB_PORT']
+        'HOST': os.environ.get('$OPENSHIFT_POSTGRESQL_DB_HOST'),
+        'PORT': os.environ.get('$OPENSHIFT_POSTGRESQL_DB_PORT')
     }
 }
 
